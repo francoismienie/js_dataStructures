@@ -30,28 +30,51 @@ LinkedList.prototype.AddTailNode = function (value) {
     }
 };
 LinkedList.prototype.RemoveHeadNode = function () {
-    let tmpNode = this.head.next;
-    tmpNode.prev = null;
-    this.head.next = null;
-    this.head = null;
-    this.head = tmpNode;
-    tmpNode = null
-};
-LinkedList.prototype.RemoveTailNode = function () {
-    if (this.tail.prev === null) {
-        this.tail = null;
-        this.head = null;
+    if (this.head === null)
         return;
+
+    const nodeValue = this.head.value;
+    this.head = this.head.next;
+    if (this.head !== null) {
+        this.head.prev.next = null;
+        this.head.prev = null;
+    }
+    else {
+        this.tail = null;
     }
 
-    let tmpNode = this.tail.prev;
-    this.tail.prev = null;
-    this.tail.next = null;
-    tmpNode.next = null;
-    this.tail = tmpNode;
-    tmpNode = null;
+
+
+    return nodeValue;
+};
+LinkedList.prototype.RemoveTailNode = function () {
+    if (this.tail === null) return null;
+
+    const nodeValue = this.tail.value;
+
+    if (this.tail.prev !== null) {
+        this.tail = this.tail.prev;
+        this.tail.next.prev = null;
+        this.tail.next = null;
+    } else {
+        this.head = null;
+        this.tail = null;
+    }
+
+    return nodeValue;
 }
 
-LinkedList.prototype.findValue = function (value) {
+LinkedList.prototype.search = function (value) {
+    let currentNode = this.head;
 
+    if (currentNode === null) return null;
+    if (currentNode.value === value) return currentNode.value;
+
+    while (currentNode !== null) {
+        if (currentNode.value === value) return currentNode.value;
+
+        currentNode = currentNode.next;
+    }
+
+    return null;
 }
