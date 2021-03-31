@@ -4,10 +4,10 @@ import { LinkedList } from './scripts/linkedList.js';
 
 const linkList = new LinkedList();
 
-linkList.AddHeadNode(112)
-linkList.AddTailNode(221)
-linkList.AddTailNode(213)
+linkList.AddHeadNode(100)
+linkList.AddTailNode(200)
+linkList.AddTailNode(300)
 
 
 //console.log(linkList.RemoveTailNode());
-console.log(linkList.search(222))
+console.log(linkList.length)
